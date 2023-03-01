@@ -1,0 +1,23 @@
+import Stats from "../models/stats";
+import PlayerSheetCardOwned from "./PlayerSheetCardOwned";
+
+const mageStats: Stats = {
+    level: 3,
+    hp: 10,
+    intelligence: 10,
+    strength: 10,
+    agility: 10,
+    luck: 10,
+    defense: 10,
+    availablePoints: 10,
+}
+
+const PlayerOwnedConatiner: React.FC = () => {
+    return (
+        <div className="flex mt-10 justify-center gap-10 ">
+            <PlayerSheetCardOwned title="Mage" image="/mage.jpeg" stats={mageStats} items={["hat", "staff", "boots"]} />
+        </div>
+    )
+}
+
+export default PlayerOwnedConatiner;
