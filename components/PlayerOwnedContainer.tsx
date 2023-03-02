@@ -16,6 +16,7 @@ const PlayerOwnedConatiner: React.FC = () => {
     return (
         <div className="flex mt-10 justify-center gap-10 ">
             <PlayerSheetCardOwned title="Mage" image="/mage.jpeg" stats={mageStats} items={["hat", "staff", "boots"]} />
+            <PlayerSheetCardOwned title="Mage" image="/mage.jpeg" stats={mageStats} items={["hat", "staff", "boots"]} />
         </div>
     )
 }

@@ -16,6 +16,9 @@ const Home: NextPage = () => {
       </Head>
       <div className='h-[100vh] bg-zinc-900'>
         <Nav />
+        <div className='flex justify-center'>
+      <h1 className=' font-bold text-zinc-200 text-2xl'>Mint a player</h1>
+        </div>
       <PlayerSheetConainer />
       </div>
     </div>
