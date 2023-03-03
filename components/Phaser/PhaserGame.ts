@@ -1,10 +1,6 @@
 import Phaser from 'phaser'
-// import { useEffect } from 'react'
 
-import HelloWorldScene from '../scenes/HelloWorldScene'
-
-
-
+import HelloWorldScene from './scenes/HelloWorldScene'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
