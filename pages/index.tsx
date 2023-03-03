@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='h-[100vh] bg-zinc-900'>
+      <div className='h-[100vh] bg-[#2D2424]'>
         <Nav />
         <div className='flex justify-center'>
       <h1 className=' font-bold text-zinc-200 text-2xl'>Mint a player</h1>

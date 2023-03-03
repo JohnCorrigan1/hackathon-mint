@@ -18,7 +18,7 @@ const gear: NextPage = () => {
 
 
     return (
-        <div className="w-full min-h-[100vh] bg-zinc-900">
+        <div className="w-full min-h-[100vh] bg-[#2D2424]">
             <Nav />
             {/* <EquipModal isOpen={isOpen} setIsOpen={setIsOpen}/> */}
             <div className="grid grid-cols-5 p-10 gap-5">

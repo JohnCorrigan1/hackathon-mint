@@ -8,4 +8,4 @@ interface Modifier {
     statToBuff: string;
 }
 
-export default Gear
+export default Gear;

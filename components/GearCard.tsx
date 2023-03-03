@@ -12,7 +12,7 @@ const GearCard: React.FC<{ item: Gear }> = (props) => {
   return (
     <>
     <EquipModal isOpen={isOpen} setIsOpen={setIsOpen} isSuccesfull={isSuccessfull} setIsSuccesfull={setIsSuccessfull} />
-    <div className="flex flex-col bg-zinc-600 max-w-lg ">
+    <div className="flex flex-col bg- max-w-lg ">
       <Image src="/mage.jpeg" height={200} width={200} alt={props.item.name} />
       <div className="flex flex-col p-3 gap-3">
         {props.item.modifiers.map((mod, index) => {
