@@ -1,11 +1,12 @@
-import HelloWorldScene from "./Phaser/scenes/HelloWorldScene"
+import { LittleGuyScene } from "./Phaser/scenes";
+
 import phaserGame from "./Phaser/PhaserGame"
 
 export default function Blank() {
 
   const handleClick = () => {
-      const scene = phaserGame.scene.keys.helloworld as HelloWorldScene
-      scene.createEmitter()
+      const scene = phaserGame.scene.keys.helloworld as LittleGuyScene
+      scene.nextRoom()
     }
 
     return (
