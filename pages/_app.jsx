@@ -33,6 +33,9 @@ const wagmiClient = createClient({
   webSocketProvider,
 });
 
+if (typeof global.navigator === 'undefined') global.navigator = {};
+// const navigator = {};
+
 function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
