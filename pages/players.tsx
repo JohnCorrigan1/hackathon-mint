@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Nav from '../components/Nav';
 import PlayerOwnedConatiner from '../components/PlayerOwnedContainer';
+import PlayersList from '../components/PlayersList';
 // import PlayerSheetConainer from '../components/PlayerSheetContainer';
 
 const players: NextPage = () => {
@@ -17,8 +18,11 @@ const players: NextPage = () => {
     </Head>
     <div className='h-[100vh] bg-zinc-900'>
       <Nav />
+      <div className='p-20'>
+      <PlayersList />
+      </div>
     {/* <PlayerSheetConainer /> */}
-    <PlayerOwnedConatiner />
+    {/* <PlayerOwnedConatiner /> */}
     </div>
   </div>
   );

@@ -303,7 +303,9 @@ const PlayerSheetCardOwned: React.FC<{
                     </>
                 ):(
                     <>
-                    <div className="h-[100px] w-[100px] flex justify-center items-center border-2 border-black p-5">currently shirtless</div>
+                    {/* <div className="h-[100px] w-[100px] flex justify-center items-center border-2 border-black p-5">currently shirtless</div>
+                     */}
+                     <Image src="/chestplate.png" height={100} width={100} alt="chest" />
                     <button className="p-2 bg-cyan-600 font-bold rounded-lg text-zinc-200 hover:scale-105 hover:bg-cyan-700 active:scale-95 duration-200">Equip</button>
                     </>
                 ) 
