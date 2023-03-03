@@ -5,6 +5,8 @@ type MonsterType = 'orc' | 'zombie' | 'skeleton';
 export default class LittleGuyScene extends Phaser.Scene {
 
   background: Phaser.GameObjects.TileSprite | undefined;
+  wizard: Phaser.GameObjects.Sprite | undefined;
+  healthText: Phaser.GameObjects.Text | undefined;
 
   constructor() {
     super('helloworld')
@@ -91,7 +93,6 @@ export default class LittleGuyScene extends Phaser.Scene {
   nextRoom() {
     this.killAllEnemies()
     this.time.delayedCall(500, () => {
-      console.log('next room')
       this.scrollBackground()
     });
     this.time.delayedCall(1500, () => {
@@ -132,6 +133,7 @@ export default class LittleGuyScene extends Phaser.Scene {
     })
     const orc = this.add.sprite(200, 100, 'orc').play('orcWalk');
     orc.flipX = true
+    orc.name = 'monster'
 
     this.tweens.add({
       targets: orc,
@@ -161,6 +163,7 @@ export default class LittleGuyScene extends Phaser.Scene {
     })
     const skeleton = this.add.sprite(200, 100, 'skeleton').play('skeletonWalk');
     skeleton.flipX = true
+    skeleton.name = 'monster'
 
     this.tweens.add({
       targets: skeleton,
@@ -190,6 +193,7 @@ export default class LittleGuyScene extends Phaser.Scene {
     })
     const goon = this.add.sprite(200, 100, 'goon').play('goonWalk');
     goon.flipX = true
+    goon.name = 'monster'
 
     this.tweens.add({
       targets: goon,
@@ -210,6 +214,25 @@ export default class LittleGuyScene extends Phaser.Scene {
     })
   }
 
+  attackPlayer() {
+    if(!this.wizard) return;
+    const attackers = this.children.getAll().filter((child) => child.name === 'monster')
+    const attacker = attackers[Phaser.Math.Between(0, attackers.length-1)]
+
+    this.tweens.add({
+      targets: attacker,
+      x: this.wizard.x,
+      y: this.wizard.y,
+      duration: 250,
+      ease: 'Sine.easeInOut',
+      yoyo: true,
+    })
+    this.time.delayedCall(125, () => {
+      if(!this.wizard) return;
+      this.bloodSplatter(this.wizard.x, this.wizard.y)
+    })
+  }
+
   createWizzard(x:number, y:number) {
     this.anims.create({
       key: 'walk',
@@ -217,7 +240,14 @@ export default class LittleGuyScene extends Phaser.Scene {
       frameRate: 8,
       repeat: -1
     })
-    const wizard = this.add.sprite(x, y, 'wizardAnim').play('walk');
+    const wizard = this.add.sprite(x, y, 'wizardAnim').play('walk').setDataEnabled();
     wizard.name = 'player'
+    this.wizard = wizard
+    wizard.setData('health', 100)
+  }
+
+  damagePlayer(damage:number) {
+    if(!this.wizard) return;
+    this.bloodSplatter(this.wizard.x, this.wizard.y)
   }
 }
