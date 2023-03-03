@@ -14,7 +14,7 @@ export default class LittleGuyScene extends Phaser.Scene {
   preload() {
     this.load.image('floor', './assets/floor_1.png')
     this.load.image('blood', './assets/blood.png')
-    this.load.spritesheet('wizardAnim', './assets/wizardCrop.png', {
+    this.load.spritesheet('wizardAnim', './wizardCrop.png', {
       frameWidth: 16,
       frameHeight: 23
     })
