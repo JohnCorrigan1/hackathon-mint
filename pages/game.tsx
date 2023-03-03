@@ -3,7 +3,8 @@ import dynamic from 'next/dynamic'
 const game1: NextPage = () => {
     const PhaserGame = dynamic(() => {
         import('../components/Phaser/PhaserGame')
-        return import('../components/Blank')}
+        return import('../components/Blank')
+        }
         , {
         ssr: false,
     })
