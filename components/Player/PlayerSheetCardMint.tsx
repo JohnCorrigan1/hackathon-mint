@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { useState } from "react";
-import MintModal from "./MintModal";
+import MintModal from "../MintModal";
+import { ethers } from "ethers";
+import { usePrepareContractWrite, useContractWrite, useWaitForTransaction } from "wagmi";
+import { GOERLI_BARBARIAN_ADDRESS, GOERLI_WIZARD_ADDRESS } from "../../lib/constants";
+import { BARBARIAN_ABI, WIZARD_ABI } from "../../lib/abi";
 
 const PlayerSheetCard: React.FC<{
   title: string;
@@ -10,15 +14,45 @@ const PlayerSheetCard: React.FC<{
   description2: string;
 }> = (props) => {
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [isSuccesful, setIsSuccesfull] = useState(false);
-    const [info, setInfo] = useState(false)
-    const mintHandler = () => {
-        setIsOpen(true);
+    let ContractAddress: `0x${string}`
+    let ContractABI = []
+
+    if(props.title === "Barbarian") {
+        ContractAddress = GOERLI_BARBARIAN_ADDRESS
+        ContractABI = BARBARIAN_ABI
+    }
+    else {
+        ContractAddress = GOERLI_WIZARD_ADDRESS
+        ContractABI = WIZARD_ABI
     }
 
 
-    
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSuccesful, setIsSuccesfull] = useState(false);
+    const [info, setInfo] = useState(false)
+
+    const mintHandler = () => {
+        mint?.();
+        // setIsOpen(true);
+    }
+
+    const { config } = usePrepareContractWrite({
+        address: ContractAddress,
+        abi: ContractABI,
+        functionName: "mint",
+        args: [],
+        onError(error) {
+          console.log("Error", error);
+        },
+      });
+
+      const { write: mint, isSuccess: isMintStarted, data: mintData } = useContractWrite(config);
+
+      const { isSuccess: txSuccess} = useWaitForTransaction({
+        hash: mintData?.hash
+      });
+
+
   return (
     <>
     <MintModal isOpen={isOpen} isSuccesful={isSuccesful} setIsSuccesfull={setIsSuccesfull} setIsOpen={setIsOpen}/>

@@ -1,4 +1,4 @@
-import Stats from "../models/stats";
+import Stats from "../../models/stats";
 import PlayerSheetCardOwned from "./PlayerSheetCardOwned";
 
 const mageStats: Stats = {

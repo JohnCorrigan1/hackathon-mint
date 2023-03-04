@@ -1,11 +1,29 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Nav from '../components/Nav';
-import PlayerOwnedConatiner from '../components/PlayerOwnedContainer';
+import PlayerOwnedConatiner from '../components/Player/PlayerOwnedContainer';
 import PlayersList from '../components/PlayersList';
 // import PlayerSheetConainer from '../components/PlayerSheetContainer';
+import { createClient } from "urql"
+import { useEffect, useState } from 'react';
+
+
+
+
+
+
 
 const players: NextPage = () => {
+
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
+
+    // const fetchData = async () => {
+        // const response = await client.query(query).toPromise()
+        // console.log(response)
+    // }
+
   return (
     <div>
     <Head>
@@ -16,7 +34,7 @@ const players: NextPage = () => {
       />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className='h-[100vh] bg-zinc-900'>
+    <div className='h-[100vh] bg-[#2D2424]'>
       <Nav />
       <div className='p-20'>
       <PlayersList />

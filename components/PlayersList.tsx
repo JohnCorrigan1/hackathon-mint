@@ -3,7 +3,7 @@ import PlayerListItem from "./PlayerListItem";
 const PlayersList: React.FC = () => {
 
     return (
-        <div className="grid p-10 bg-zinc-600 bg-opacity-60 table gap-10 rounded-lg text-zinc-200 font-bold">
+        <div className="grid p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
             {/* <div className=" text-zinc-200 text-xl font-bold w-full "> */}
             {/* <p className="flex justify-center w-full">Token ID</p> */}
             <p className="flex justify-center text-2xl">Name</p>

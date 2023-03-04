@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import Nav from "../components/Nav";
-import PlayerSheetCardOwned from "../components/PlayerSheetCardOwned";
+import PlayerSheetCardOwned from "../components/Player/PlayerSheetCardOwned";
+import PlayerSheetItems from "../components/PlayerSheetItems";
 import Stats from "../models/stats";
 
 const assignStats: NextPage = () => {
@@ -19,12 +20,16 @@ const assignStats: NextPage = () => {
     <div className="h-[100vh] w-[100vw] bg-[#2D2424]">
       <Nav />
       <div className="flex justify-center">
+      <div className="flex w-1/2 rounded-xl bg-[#D5CEA3] bg-opacity-30">
         <PlayerSheetCardOwned
           title={"title"}
           items={[]}
           stats={mageStats}
           image={"/wizard.png"}
         />
+        <PlayerSheetItems />
+
+        </div>
       </div>
     </div>
   );

@@ -20,12 +20,11 @@ const Nav = () => {
             My Gear
           </h1>
         </Link>
-        {/* <Link href="/about">
-          <h1 className=" text-xl font-bold cursor-pointer hover:bg-[#E0C097] p-2 hover:scale-105 active:scale-95 rounded-xl hover:bg-opacity-50 duration-300">
-            How it Works?
-          </h1>
-        </Link> */}
-        
+        <Link href="/mintgear">
+            <h1 className="text-zinc-200 text-xl font-bold cursor-pointer hover:bg-[#E0C097] p-2 hover:scale-105 active:scale-95 rounded-xl hover:bg-opacity-50 duration-300">
+                Mint Gear
+            </h1>
+        </Link>
         <Link href="/game">
           <h1 className="text-zinc-200 text-xl font-bold cursor-pointer hover:bg-zinc-400 p-2 hover:scale-105 active:scale-95 rounded-xl hover:bg-opacity-50 duration-300">
             Play Game

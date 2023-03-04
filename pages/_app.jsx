@@ -2,14 +2,23 @@ import '../styles/globals.css';
 import '@rainbow-me/rainbowkit/styles.css';
 import { RainbowKitProvider, getDefaultWallets, darkTheme } from '@rainbow-me/rainbowkit';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { sepolia } from 'wagmi/chains';
+import { goerli } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import { createClient as urqlCreateClient, Provider } from 'urql';
+
+// const APIURL = "https://api.thegraph.com/subgraphs/name/mercuricchloride/hackathon"
+
+
+// const urqlClient = urqlCreateClient({
+//   url: APIURL,
+// });
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
-    sepolia,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
+    
+    goerli,
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli] : []),
   ],
   [
     alchemyProvider({
@@ -40,7 +49,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} theme={darkTheme()} coolMode >
+        {/* <Provider value={urqlClient}> */}
         <Component {...pageProps} />
+        {/* </Provider> */}
       </RainbowKitProvider>
     </WagmiConfig>
   );
