@@ -14,11 +14,11 @@ interface Props {
 }
 
 
-const assignStats = (props: Props) => {
+const AssignStats = ({tokenId}: Props) => {
 
-    const [tokenID, setTokenID] = useState<string>(props.tokenId as string);
-    const [query, setQuery] = useState<string>(getPlayerStats(tokenID) || "");
-    const [player, setPlayer] = useState<Player | null>(null)
+  const [tokenID, setTokenID] = useState<string>(tokenId as string);
+  const [query, setQuery] = useState<string>(getPlayerStats(tokenID) || "");
+  const [player, setPlayer] = useState<Player | null>(null)
 
   const mageStats: Stats = {
     strength: 10,
@@ -38,7 +38,7 @@ const playerId = router.query.tokenId;
 useEffect(() => {
     setTokenID(playerId as string);
     setQuery(getPlayerStats(tokenID));
-}, [playerId]);
+}, [playerId, tokenID]);
 
 const [result, reexecuteQuery] = useQuery({
     query,
@@ -86,4 +86,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 
 
-export default assignStats;
+export default AssignStats;
