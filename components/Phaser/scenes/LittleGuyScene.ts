@@ -1,10 +1,9 @@
-import { argv0 } from "process";
-
 type MonsterType = 'orc' | 'zombie' | 'skeleton';
 
 export default class LittleGuyScene extends Phaser.Scene {
 
   background: Phaser.GameObjects.TileSprite | undefined;
+  walls: Phaser.GameObjects.TileSprite | undefined;
   wizard: Phaser.GameObjects.Sprite | undefined;
   healthText: Phaser.GameObjects.Text | undefined;
 
@@ -15,7 +14,14 @@ export default class LittleGuyScene extends Phaser.Scene {
 
   preload() {
     this.load.image('floor', './assets/floor_1.png')
+    this.load.image('wall', './assets/wall_mid.png') 
     this.load.image('blood', './assets/blood.png')
+
+    this.load.audio('squish', './assets/squish.mp3') 
+    this.load.audio('sword', './assets/sword.mp3')
+    this.load.audio('hit', './assets/umph.mp3')
+    this.load.audio('music', './assets/dungeon_song.mp3')
+
     this.load.spritesheet('wizardAnim', './wizardCrop.png', {
       frameWidth: 16,
       frameHeight: 23
@@ -35,7 +41,9 @@ export default class LittleGuyScene extends Phaser.Scene {
   }
 
   create() {
+    this.sound.play('music', {seek: 15, loop: true})
     this.background = this.add.tileSprite(0,0, 20000, 800, 'floor')
+    this.walls = this.add.tileSprite(0,0, 20000, 25, 'wall')
     this.createWizzard(25, 100)
     this.spawnRoom()
   }
@@ -57,33 +65,37 @@ export default class LittleGuyScene extends Phaser.Scene {
     });
   }
 
-  killAllEnemies() {
-    this.children.getAll()
-    .filter((child) => child.type === 'Sprite' && child.name !== 'player')
-    .forEach((child) => {
+  killEnemy(enemy: Phaser.GameObjects.Sprite) {
       this.tweens.add({
-        targets: child,
+        targets: enemy,
         angle: 90,
         duration: 500,
         ease: 'Power1',
       }).on('complete', () => {
-        //@ts-ignore
-        this.bloodSplatter(child.x, child.y)
-        child.destroy()
+        this.sound.play('squish')
+        this.bloodSplatter(enemy.x, enemy.y)
+        enemy.destroy()
       })
-    });
+  }
+
+
+  killAllEnemies() {
+    this.children.getAll()
+    .filter((child) => child.name === 'monster')
+    .forEach((child) => this.killEnemy(child as Phaser.GameObjects.Sprite));
   }
 
   spawnRoom() {
     this.createMonsters('orc', Phaser.Math.Between(0, 3))
-    this.createMonsters('skeleton',Phaser.Math.Between(0, 3))
+    this.createMonsters('skeleton',Phaser.Math.Between(1, 3))
     this.createMonsters('zombie',Phaser.Math.Between(0, 3))
   }
 
   scrollBackground() {
     if(!this.background) return;
     this.tweens.add({
-      targets: this.background,
+      name: 'scroll',
+      targets: [this.background, this.walls],
       x: this.background.x - 100,
       duration: 1000,
       ease: 'Power1',
@@ -91,6 +103,7 @@ export default class LittleGuyScene extends Phaser.Scene {
   }
 
   nextRoom() {
+    this.wizard?.setPosition(25, 100)
     this.killAllEnemies()
     this.time.delayedCall(500, () => {
       this.scrollBackground()
@@ -118,10 +131,6 @@ export default class LittleGuyScene extends Phaser.Scene {
         }
         break;
     }
-  }
-
-  createLogAllEnemies() {
-    this.children.getAll().forEach((child) => console.log(child))
   }
 
   createOrc(x:number, y:number) {
@@ -229,8 +238,36 @@ export default class LittleGuyScene extends Phaser.Scene {
     })
     this.time.delayedCall(125, () => {
       if(!this.wizard) return;
+      this.sound.play('hit', { seek: 0.5 });
       this.bloodSplatter(this.wizard.x, this.wizard.y)
     })
+  }
+
+  attackMonster() {
+    if(!this.wizard) return;
+    const monsters = this.children.getAll().filter((child) => child.name === 'monster')
+    const monster = monsters[Phaser.Math.Between(0, monsters.length-1)] as Phaser.GameObjects.Sprite
+    //make a particle effect that goes from the wizard to the monster
+    //make a blood splatter effect on the monster
+
+    this.tweens.add({
+      targets: this.wizard,
+      x: monster.x,
+      y: monster.y,
+      duration: 250,
+      ease: 'Sine.easeInOut',
+      yoyo: true,
+    })
+
+    this.time.delayedCall(125, () => {
+      this.sound.play('sword');
+      this.killEnemy(monster)
+    })
+
+    if(monsters.length === 1) {
+      this.nextRoom()
+    }
+
   }
 
   createWizzard(x:number, y:number) {

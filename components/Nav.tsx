@@ -25,6 +25,12 @@ const Nav = () => {
             How it Works?
           </h1>
         </Link> */}
+        
+        <Link href="/game">
+          <h1 className="text-zinc-200 text-xl font-bold cursor-pointer hover:bg-zinc-400 p-2 hover:scale-105 active:scale-95 rounded-xl hover:bg-opacity-50 duration-300">
+            Play Game
+          </h1>
+        </Link>
         <ConnectButton />
       </div> 
     </div>
