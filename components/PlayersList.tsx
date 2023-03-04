@@ -3,13 +3,15 @@ import PlayerListItem from "./PlayerListItem";
 const PlayersList: React.FC = () => {
 
     return (
-        <div className="grid p-10 bg-zinc-600 grid-flow-row gap-10">
-            <div className=" text-zinc-200 grid grid-flow-col text-xl font-bold w-full">
-            <p className="flex justify-center w-full">Token ID</p>
-            <p className="flex justify-center w-full">Name</p>
-            <p className="flex justify-center w-full">Class</p>
-            <p className="flex justify-center w-full">Level</p>
-        </div>
+        <div className="grid p-10 bg-zinc-600 bg-opacity-60 table gap-10 rounded-lg text-zinc-200 font-bold">
+            {/* <div className=" text-zinc-200 text-xl font-bold w-full "> */}
+            {/* <p className="flex justify-center w-full">Token ID</p> */}
+            <p className="flex justify-center text-2xl">Name</p>
+            <p className="flex justify-center text-2xl">Class</p>
+            <p className="flex justify-center text-2xl">Level</p>
+            <p></p>
+            <p></p>
+        {/* </div> */}
             <PlayerListItem name="Player" class="Mage" level="3" tokenId="123" />
             <PlayerListItem name="Player" class="Mage" level="3" tokenId="123" />
             <PlayerListItem name="Player" class="Mage" level="3" tokenId="123" />

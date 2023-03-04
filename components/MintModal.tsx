@@ -40,10 +40,10 @@ return (
     </div>)}
 
 {props.isSuccesful && (
-   
+    
     <div>
-        <p className="text-2xl font-bold">Successfully minted #123</p>
-        <p>You&aposre player sheet has 12 stat points available to assign</p>
+        <p className="text-2xl font-bold">Successfully minted #123!</p>
+        <p>You&apos;re player sheet has 12 stat points available to assign</p>
        <Link href={`/${tokenID}`}><p className="underline text-blue-500 cursor-pointer">Assign them here</p></Link>
         <p>Transaction hash: 0x1234568688686</p>
         <p>Nft Address: 0x1234567890</p>

@@ -10,3 +10,9 @@ canvas {
     /* translate-x: 50%; */
     transform: translate(-50%, -50%);    
   }
+
+
+  .table {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}

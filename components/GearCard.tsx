@@ -12,13 +12,13 @@ const GearCard: React.FC<{ item: Gear }> = (props) => {
   return (
     <>
     <EquipModal isOpen={isOpen} setIsOpen={setIsOpen} isSuccesfull={isSuccessfull} setIsSuccesfull={setIsSuccessfull} />
-    <div className="flex flex-col bg- max-w-lg ">
-      <Image src="/mage.jpeg" height={200} width={200} alt={props.item.name} />
+    <div className="flex flex-col bg-[#D5CEA3] bg-opacity-40 rounded-lg max-w-lg text-zinc-200 ">
+      <Image src="/mage.jpeg" height={200} width={200} alt={props.item.name} className="rounded-t-lg" />
       <div className="flex flex-col p-3 gap-3">
         {props.item.modifiers.map((mod, index) => {
           return <p key={index}>{mod.statToBuff}: {mod.buff}</p>
         })}
-      <button onClick={equipHandler} className="bg-blue-500 p-2 rounded-lg font-bold hover:bg-blue-600 hover:scale-105 active:scale-95">Equip</button>
+      <button onClick={equipHandler} className="bg-[#E5E5CB] text-[#3C2A21] font-bold rounded-xl p-2 active:scale-95 hover:scale-105 duration-200">Equip</button>
       </div>
     </div>
     </>

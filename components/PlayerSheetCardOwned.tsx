@@ -22,7 +22,11 @@ const PlayerSheetCardOwned: React.FC<{
   const [body, setBody] = useState(false)
   const [legs, setLegs] = useState(true)
   const [feet, setFeet] = useState(false)
+  const [name, setName] = useState("")
 
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
 
 
   const handleHpIncrease = () => {
@@ -110,18 +114,22 @@ const PlayerSheetCardOwned: React.FC<{
   };
 
   return (
-    <div className="flex w-2/5 rounded-xl bg-zinc-500">
-    <div className="flex flex-col  w-1/2">
+    <div className="flex w-1/2 rounded-xl bg-[#D5CEA3] bg-opacity-30">
+    <div className="flex flex-col  w-1/2 border-r-2 border-black p-5">
       <Image
         src={props.image}
         alt={props.title}
-        width={125}
+        width={300}
         height={250}
-        className="rounded-t-xl"
+        className="rounded-xl shadow-xl"
       />
       <div className="p-5 text-zinc-200 flex flex-col gap-5">
         {/* <p>{props.description}</p> */}
         <div className="border-2 border-black rounded-xl flex flex-col">
+        <div className="flex justify-center border-b-2 border-black p-3 flex-col items-center">
+            <label className="" htmlFor="name">Name</label>
+            <input type="text" name="name" onChange={handleName} value={name}/>
+          </div>
           <div className="flex justify-center border-b-2 border-black p-3">
             <h2>Level: {props.stats.level}</h2>
           </div>
@@ -278,7 +286,7 @@ const PlayerSheetCardOwned: React.FC<{
         </button>
       </div>
     </div>
-    <div className=" w-1/2 flex flex-col justify-between p-10">
+    <div className=" w-1/2 flex flex-col justify-between items-center p-10">
             <div className="flex flex-col justify-center items-center">
                 <h1>Epic Gamer hat</h1>
                 {head ? (
@@ -294,7 +302,7 @@ const PlayerSheetCardOwned: React.FC<{
                 ) 
                 }
             </div>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center gap-3">
                 <h1>Big Boobies</h1>
                 {body ? (
                     <>
