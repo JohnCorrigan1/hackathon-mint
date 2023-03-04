@@ -7,12 +7,12 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { createClient as urqlCreateClient, Provider } from 'urql';
 
-// const APIURL = "https://api.thegraph.com/subgraphs/name/mercuricchloride/hackathon"
+const APIURL = "https://api.thegraph.com/subgraphs/name/mercuricchloride/hackathon"
 
 
-// const urqlClient = urqlCreateClient({
-//   url: APIURL,
-// });
+const urqlClient = urqlCreateClient({
+  url: APIURL,
+});
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -49,9 +49,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} theme={darkTheme()} coolMode >
-        {/* <Provider value={urqlClient}> */}
+        <Provider value={urqlClient}>
         <Component {...pageProps} />
-        {/* </Provider> */}
+        </Provider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

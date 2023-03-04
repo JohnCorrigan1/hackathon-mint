@@ -56,7 +56,7 @@ const PlayerSheetCard: React.FC<{
   return (
     <>
     <MintModal isOpen={isOpen} isSuccesful={isSuccesful} setIsSuccesfull={setIsSuccesfull} setIsOpen={setIsOpen}/>
-      <div className="flex flex-col bg-[#D5CEA3] bg-opacity-40 rounded-xl">
+      <div className="flex flex-col bg-[#D5CEA3] bg-opacity-40 rounded-xl w-[400px]">
         <Image
           src={props.image}
           alt={props.title}
