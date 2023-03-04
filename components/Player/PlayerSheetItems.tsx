@@ -1,13 +1,14 @@
 import Image from "next/image"
 import { useState } from "react"
+import { Player } from "../../models/Player";
 
-const PlayerSheetItems = () => {
+const PlayerSheetItems: React.FC <{player: Player }> = (props) => {
 
-
-    const [head, setHead] = useState(true);
-    const [body, setBody] = useState(false);
-    const [legs, setLegs] = useState(true);
-    const [feet, setFeet] = useState(false);
+  console.log(props.player.legs)
+    const [head, setHead] = useState<{}>(true);
+    const [body, setBody] = useState<{}>(false);
+    const [legs, setLegs] = useState<{}>(true);
+    const [feet, setFeet] = useState<{}>(false);
 
     return (
     <div className=" w-1/2 flex flex-col justify-between items-center p-10">

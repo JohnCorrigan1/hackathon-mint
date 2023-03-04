@@ -3,10 +3,10 @@ import PlayerSheetCardOwned from "./PlayerSheetCardOwned";
 
 const mageStats: Stats = {
     level: 3,
-    hp: 10,
+    constitution: 10,
     intelligence: 10,
     strength: 10,
-    agility: 10,
+    dexterity: 10,
     luck: 10,
     defense: 10,
     availablePoints: 10,

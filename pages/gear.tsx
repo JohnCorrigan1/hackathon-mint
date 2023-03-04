@@ -13,7 +13,7 @@ const gear: NextPage = () => {
 
     const speedBoots: Gear = {
         name: "Speed Boots",
-        modifiers: [{statToBuff: "Agility", buff: 5}, {statToBuff: "Consitution", buff: -1}, {statToBuff: "Intellect", buff: 100}]
+        modifiers: [{statToBuff: "dexterity", buff: 5}, {statToBuff: "Consitution", buff: -1}, {statToBuff: "Intellect", buff: 100}]
     }
 
 

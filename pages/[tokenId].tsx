@@ -24,10 +24,10 @@ const AssignStats = ({tokenId}: Props) => {
     strength: 10,
     defense: 10,
     level: 1,
-    agility: 10,
+    dexterity: 10,
     luck: 10,
     availablePoints: 0,
-    hp: 10,
+    constitution: 10,
     intelligence: 10,
   };
 
@@ -48,8 +48,8 @@ const [result, reexecuteQuery] = useQuery({
         const { data, fetching, error } = result;
         console.log(result)
         setPlayer(result.data?.players[0])
-        console.log(player)
-    }, [result]);
+        // console.log("player", player)
+    }, [result, player]);
 
 useEffect(() => {
     reexecuteQuery();
@@ -60,14 +60,17 @@ useEffect(() => {
       <Nav />
       <div className="flex justify-center">
       <div className="flex w-1/2 rounded-xl bg-[#D5CEA3] bg-opacity-30">
+        {player && (
+          <>
         <PlayerSheetCardOwned
           title={"title"}
           items={[]}
-          stats={mageStats}
+          player={player}
           image={"/wizard.png"}
         />
-        <PlayerSheetItems />
-
+        <PlayerSheetItems player={player} />
+        </>
+        )}
         </div>
       </div>
     </div>

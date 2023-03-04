@@ -4,7 +4,7 @@ interface Stats {
     intelligence: number;
     strength: number;
     defense: number;
-    agility: number;
+    dexterity: number;
     luck: number;
     availablePoints: number;
 }

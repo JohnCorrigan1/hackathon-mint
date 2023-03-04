@@ -1,111 +1,29 @@
 import Stats from "../../models/stats";
 import Image from "next/image";
 import { useState } from "react";
+import { Player } from "../../models/Player";
+import PlayerSheetStat from "./PlayerSheetStat";
 
 const PlayerSheetCardOwned: React.FC<{
   title: string;
   items: string[];
-  stats: Stats;
+  player: Player | null;
   image: string;
 }> = (props) => {
-  const [hp, setHp] = useState(props.stats.hp);
-  const [intelligence, setIntelligence] = useState(props.stats.intelligence);
-  const [strength, setStrength] = useState(props.stats.strength);
-  const [agility, setAgility] = useState(props.stats.agility);
-  const [luck, setLuck] = useState(props.stats.luck);
-  const [defense, setDefense] = useState(props.stats.defense);
+  const [constitution, setConstitution] = useState(props.player?.constitution);
+  const [intelligence, setIntelligence] = useState(props.player?.intelligence);
+  const [strength, setStrength] = useState(props.player?.strength);
+  const [dexterity, setDexterity] = useState(props.player?.dexterity);
+  const [luck, setLuck] = useState(props.player?.luck);
+  const [wisdom, setWisdom] = useState(props.player?.wisdom);
+  const [charisma, setCharisma] = useState(props.player?.charisma);
   const [availablePoints, setAvailablePoints] = useState(
-    props.stats.availablePoints
+    props.player?.pointsToSpend
   );
-
   const [name, setName] = useState("");
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-  };
-
-  const handleHpIncrease = () => {
-    if (availablePoints > 0) {
-      setHp(hp + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleHpDecrease = () => {
-    if (hp > 1 && hp > props.stats.hp) {
-      setHp(hp - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
-  };
-
-  const handleIntelligenceIncrease = () => {
-    if (availablePoints > 0) {
-      setIntelligence(intelligence + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleIntelligenceDecrease = () => {
-    if (intelligence > 1 && intelligence > props.stats.intelligence) {
-      setIntelligence(intelligence - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
-  };
-
-  const handleStrengthIncrease = () => {
-    if (availablePoints > 0) {
-      setStrength(strength + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleStrengthDecrease = () => {
-    if (strength > 1 && strength > props.stats.strength) {
-      setStrength(strength - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
-  };
-
-  const handleAgilityIncrease = () => {
-    if (availablePoints > 0) {
-      setAgility(agility + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleAgilityDecrease = () => {
-    if (agility > 1 && agility > props.stats.agility) {
-      setAgility(agility - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
-  };
-
-  const handleLuckIncrease = () => {
-    if (availablePoints > 0) {
-      setLuck(luck + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleLuckDecrease = () => {
-    if (luck > 1 && luck > props.stats.luck) {
-      setLuck(luck - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
-  };
-
-  const handleDefenseIncrease = () => {
-    if (availablePoints > 0) {
-      setDefense(defense + 1);
-      setAvailablePoints(availablePoints - 1);
-    }
-  };
-
-  const handleDefenseDecrease = () => {
-    if (defense > 1 && defense > props.stats.defense) {
-      setDefense(defense - 1);
-      setAvailablePoints(availablePoints + 1);
-    }
   };
 
   return (
@@ -118,7 +36,6 @@ const PlayerSheetCardOwned: React.FC<{
         className="rounded-xl shadow-xl"
       />
       <div className="p-5 text-zinc-200 flex flex-col gap-5">
-        {/* <p>{props.description}</p> */}
         <div className="border-2 border-black rounded-xl flex flex-col">
           <div className="flex justify-center border-b-2 border-black p-3 flex-col items-center">
             <label className="" htmlFor="name">
@@ -127,151 +44,64 @@ const PlayerSheetCardOwned: React.FC<{
             <input type="text" name="name" onChange={handleName} value={name} />
           </div>
           <div className="flex justify-center border-b-2 border-black p-3">
-            <h2>Level: {props.stats.level}</h2>
+            <h2>Level: {props.player?.level}</h2>
           </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Hp: {hp}</p>
-            <div className="flex items-center gap-5 ">
-              <button onClick={handleHpIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              {/* <button className="text-3xl font-bold hover:scale-105 active:scale-95">
-                +
-              </button> */}
-              <button onClick={handleHpDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-1 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                  onClick={handleHpDecrease}
-                />
-              </button>
-              {/* <button className="text-3xl font-bold">-</button> */}
-            </div>
-          </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Strength: {strength}</p>
-            <div className="flex items-center gap-5 cursor-pointer ">
-              <button onClick={handleStrengthIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              <button onClick={handleStrengthDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Intelligence: {intelligence}</p>
-            <div className="flex items-center gap-5 cursor-pointer ">
-              <button onClick={handleIntelligenceIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              <button onClick={handleIntelligenceDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Defense: {defense}</p>
-            <div className="flex items-center gap-5 cursor-pointer ">
-              <button onClick={handleDefenseIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              <button onClick={handleDefenseDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Agility: {agility}</p>
-            <div className="flex items-center gap-5 cursor-pointer ">
-              <button onClick={handleAgilityIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              <button onClick={handleAgilityDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between p-1 border-b-2 border-black items-center">
-            <p>Luck: {luck}</p>
-            <div className="flex items-center gap-5 cursor-pointer ">
-              <button onClick={handleLuckIncrease}>
-                <Image
-                  src="/add.svg"
-                  alt="add"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-              <button onClick={handleLuckDecrease}>
-                <Image
-                  src="/minus.svg"
-                  alt="minus"
-                  width={30}
-                  height={30}
-                  className="hover:bg-zinc-300 p-2 rounded-xl hover:scale-105 active:scale-95 duration-100"
-                />
-              </button>
-            </div>
-          </div>
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={constitution}
+            setState={setConstitution}
+            currentStat={props.player?.constitution}
+            statName="Constitution"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={intelligence}
+            setState={setIntelligence}
+            currentStat={props.player?.intelligence}
+            statName="Intelligence"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={strength}
+            setState={setStrength}
+            currentStat={props.player?.strength}
+            statName="Strength"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={dexterity}
+            setState={setDexterity}
+            currentStat={props.player?.dexterity}
+            statName="Dexterity"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={luck}
+            setState={setLuck}
+            currentStat={props.player?.luck}
+            statName="Luck"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={wisdom}
+            setState={setWisdom}
+            currentStat={props.player?.wisdom}
+            statName="Wisdom"
+          />
+          <PlayerSheetStat
+            availablePoints={availablePoints}
+            setAvailablePoints={setAvailablePoints}
+            stat={charisma}
+            setState={setCharisma}
+            currentStat={props.player?.charisma}
+            statName="Charisma"
+          />
           <div className="p-3 flex justify-center items-center">
             <h2>Available points: {availablePoints}</h2>
           </div>
