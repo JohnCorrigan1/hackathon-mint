@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MintModal from "../MintModal";
 import { ethers } from "ethers";
 import { usePrepareContractWrite, useContractWrite, useWaitForTransaction } from "wagmi";
@@ -33,7 +33,7 @@ const PlayerSheetCard: React.FC<{
 
     const mintHandler = () => {
         mint?.();
-        // setIsOpen(true);
+        setIsOpen(true);
     }
 
     const { config } = usePrepareContractWrite({
@@ -47,11 +47,17 @@ const PlayerSheetCard: React.FC<{
       });
 
       const { write: mint, isSuccess: isMintStarted, data: mintData } = useContractWrite(config);
-
+ 
       const { isSuccess: txSuccess} = useWaitForTransaction({
         hash: mintData?.hash
       });
 
+      useEffect(() => {
+        if(txSuccess) {
+          setIsSuccesfull(true)
+        }
+        console.log(mintData)
+      }, [txSuccess])
 
   return (
     <>
