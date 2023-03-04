@@ -14,10 +14,16 @@ export default function Blank() {
       scene.attackPlayer()
   }
 
+  const attackMonster = () => {
+      const scene = phaserGame.scene.keys.helloworld as LittleGuyScene
+      scene.attackMonster()
+  }
+
     return (
         <>
         <button className="text-zinc-200 text-2xl p-3 " onClick={nextRoom}>Click me</button>
-        <button className="text-zinc-200 text-2xl p-3" onClick={attackPlayer}>Attack</button>
+        <button className="text-zinc-200 text-2xl p-3" onClick={attackPlayer}>Attack Player</button>
+        <button className="text-zinc-200 text-2xl p-3" onClick={attackMonster}>Attack Monster</button>
         </>
     )
 }

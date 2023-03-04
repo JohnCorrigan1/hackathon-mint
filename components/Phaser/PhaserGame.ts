@@ -1,12 +1,12 @@
 import Phaser from 'phaser'
 
-import {HelloWorldScene, LittleGuyScene} from './scenes'
+import {LittleGuyScene} from './scenes'
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   backgroundColor: '#282c34',
   pixelArt: true,
-  zoom: 4,
+  zoom: 3.5,
   scale: {
     width: 200,
     height: 200,
