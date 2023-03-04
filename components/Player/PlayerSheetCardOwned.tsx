@@ -1,4 +1,3 @@
-import Stats from "../../models/stats";
 import Image from "next/image";
 import { useState } from "react";
 import { Player } from "../../models/Player";
