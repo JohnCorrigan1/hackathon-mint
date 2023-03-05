@@ -97,13 +97,38 @@ const getClasses = `
 //gets all items approved
 const getItems = `
     query {
+      {
+        gears(
+          where: {owner_contains_nocase: "0xDFaD36565B8753e9D2b0bdCbaF652C17f7733047"}
+        ) {
+          gearType {
+            slot
+            modifiers {
+              mod
+              stat
+            }
+          }
+        }
+      }
+    }
         `
 
       
 //gets all owned items of currently connected wallet
 const getOwnedGear = (address: string) => `
-    query {
-
+query {
+  gears(
+    where: {owner_contains_nocase: "${address}"}
+  ) {
+    gearType {
+      slot
+      modifiers {
+        mod
+        stat
+      }
+    }
+  }
+}
       `
 
 export { getPlayers, getPlayerStats, getClasses, getItems, getOwnedGear }

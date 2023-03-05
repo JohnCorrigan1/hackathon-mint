@@ -17,7 +17,7 @@ const Mintgear: NextPage = () => {
 
     const handleGearMint = () => {
         setIsAnimating(true)
-        mint?.();
+        _mintGear?.();
         setIsOpen(true);
     }
 
@@ -27,15 +27,15 @@ const Mintgear: NextPage = () => {
       // @ts-ignore
       address: gearContractAddress,
       abi: gearAbi,
-      functionName: "mint",
-      args: [],
+      functionName: "_mintGear",
+      args: [0],
       onError(error) {
         console.log("Error", error);
       },
     });
 
     const {
-      write: mint,
+      write: _mintGear,
       isSuccess: isMintStarted,
       data: mintData,
     } = useContractWrite(config);
@@ -49,7 +49,6 @@ const Mintgear: NextPage = () => {
         setIsSuccesfull(true);
         setMintHash(mintData!.hash.toString());
       }
-      console.log(mintData);
     }, [txSuccess]);
 
     return (
