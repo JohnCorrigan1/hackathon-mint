@@ -94,6 +94,10 @@ const Gear: NextPage = () => {
                }
                
                 <GearCard item={speedBoots} image="/head.png"/>
+                <GearCard item={speedBoots} image="/body.png"/>
+                <GearCard item={speedBoots} image="/head.png"/>
+                <GearCard item={speedBoots} image="/legs.png"/>
+                <GearCard item={speedBoots} image="/feet.png"/>
                 {/* <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
