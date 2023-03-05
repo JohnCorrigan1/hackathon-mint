@@ -8,9 +8,9 @@ import { PlayerClass } from "../../models/playerClass";
 
 const PlayerSheetConainer = () => {
 
-  const [description, setDescription] = useState<string>("");
-  const [description2, setDescription2] = useState<string>("");
-  const [image, setImage] = useState<string>("");
+  // const [description, setDescription] = useState<string>("");
+  // const [description2, setDescription2] = useState<string>("");
+  // const [image, setImage] = useState<string>("");
   const [classes, setClasses] = useState<PlayerClass[]>([])
   const [result, reexecuteQuery] = useQuery({
     query: getClasses,

@@ -67,7 +67,7 @@ const PlayersList: React.FC = () => {
             <p></p>
             {players?.map((player, index) => {
                 return (
-                    <PlayerListItem key={index} name={player.tokenId} class={player.playerClass.name} level={player.level.toString()} tokenId={player.tokenId} />
+                    <PlayerListItem key={index} name={player.tokenId} class={player.playerClass.name} level={player.level.toString()} tokenId={player.tokenId} address={player.id} />
                 )
             })}
         </div> )}

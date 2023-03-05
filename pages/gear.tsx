@@ -13,7 +13,9 @@ const Gear: NextPage = () => {
 
     const speedBoots: Gear = {
         name: "Speed Boots",
-        modifiers: [{statToBuff: "dexterity", buff: 5}, {statToBuff: "Consitution", buff: -1}, {statToBuff: "Intellect", buff: 100}]
+        modifiers: [{statToBuff: "dexterity", buff: 5}, {statToBuff: "Consitution", buff: -1}, {statToBuff: "Intellect", buff: 100}],
+        rarity: "common",
+        slot: "feet",
     }
 
 
@@ -33,7 +35,6 @@ const Gear: NextPage = () => {
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
-
             </div>
         </div>
     )

@@ -24,48 +24,94 @@ const getPlayers = (address: string) =>  `
   `
 
 //gets player stats by token id
-const getPlayerStats = (tokenId: string) =>`
+// const getPlayerStats = (tokenId: string) =>`
+//     query {
+//         players(where: {tokenId: "${tokenId}"}) {
+//             charisma
+//             constitution
+//             dexterity
+//             id
+//             intelligence
+//             level
+//             luck
+//             pointsToSpend
+//             tokenId
+//             strength
+//             wisdom
+//             xp
+//             feet {
+//               id
+//               name
+//               rarity
+//               slot
+//             }
+//             head {
+//               id
+//               name
+//               rarity
+//               slot
+//             }
+//             legs {
+//               id
+//               name
+//               rarity
+//               slot
+//             }
+//             body {
+//               id
+//               name
+//               rarity
+//               slot
+//             }
+//           }
+//         }
+//         `
+
+const getPlayerStats = (tokenId: string, address: string) =>`
     query {
-        players(where: {tokenId: "${tokenId}"}) {
-            charisma
-            constitution
-            dexterity
-            id
-            intelligence
-            level
-            luck
-            pointsToSpend
-            tokenId
-            strength
-            wisdom
-            xp
-            feet {
-              id
-              name
-              rarity
-              slot
-            }
-            head {
-              id
-              name
-              rarity
-              slot
-            }
-            legs {
-              id
-              name
-              rarity
-              slot
-            }
-            body {
-              id
-              name
-              rarity
-              slot
-            }
-          }
+      players(where: {tokenId: "${tokenId}", id: "${address}"}) {
+        charisma
+        constitution
+        dexterity
+        id
+        intelligence
+        level
+        luck
+        pointsToSpend
+        tokenId
+        strength
+        wisdom
+        xp
+        feet {
+          id
+          name
+          rarity
+          slot
         }
-        `
+        head {
+          id
+          name
+          rarity
+          slot
+        }
+        legs {
+          id
+          name
+          rarity
+          slot
+        }
+        body {
+          id
+          name
+          rarity
+          slot
+        }
+        playerClass {
+          id
+          name
+        }
+      }
+    }`
 
 
 //gets all classes approved
@@ -87,6 +133,7 @@ const getItems = `
 //gets all owned items of currently connected wallet
 const getOwnedItems = (address: string) => `
     query {
+
       `
 
 export { getPlayers, getPlayerStats, getClasses, getItems }

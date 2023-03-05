@@ -20,14 +20,25 @@ const PlayerSheetCardOwned: React.FC<{
     props.player?.pointsToSpend
   );
 //  const [className, setClassName] = useState(props.player?.playerClass.name);
+    let image = ""
 
-    
+  if(props.player?.playerClass.name === "Wizard"){
+    image = "/wizard.png"
+  } else if(props.player?.playerClass.name === "Barbarian"){
+    image = "/barbarian.png"
+  } else if(props.player?.playerClass.name === "Rogue"){
+    image = "/rogue.png"
+  } else if(props.player?.playerClass.name === "Paladin"){
+    image = "/paladin.png"
+  } else if(props.player?.playerClass.name === "Monk"){
+    image = "/monk.png"
+  }
 
   return (
     <div className="flex flex-col w-full p-5">
       <Image
-        src={props.image}
-        alt={props.title}
+        src={image}
+        alt={props.player?.playerClass.name}
         width={300}
         height={250}
         className="rounded-xl shadow-xl"
@@ -36,7 +47,7 @@ const PlayerSheetCardOwned: React.FC<{
         <div className="border-2 border-black rounded-xl flex flex-col">
           <div className="flex justify-center border-b-2 border-black p-3 flex-col items-center">
             
-            {/* <h1 className="text-2xl">{className}</h1> */}
+            <h1 className="text-2xl">{props.player?.playerClass.name}</h1>
           </div>
           <div className="flex justify-center border-b-2 border-black p-3">
             <h2>Level: {props.player?.level}</h2>

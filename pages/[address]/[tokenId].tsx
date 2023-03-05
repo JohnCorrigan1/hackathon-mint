@@ -1,29 +1,34 @@
 import { GetServerSideProps, NextPage } from "next";
-import Nav from "../components/Nav";
-import PlayerSheetCardOwned from "../components/Player/PlayerSheetCardOwned";
-import PlayerSheetItems from "../components/Player/PlayerSheetItems";
+import Nav from "../../components/Nav";
+import PlayerSheetCardOwned from "../../components/Player/PlayerSheetCardOwned";
+import PlayerSheetItems from "../../components/Player/PlayerSheetItems";
 import { useState, useEffect } from "react";
-import { getPlayerStats } from "../lib/SubgraphQueries";
+import { getPlayerStats } from "../../lib/SubgraphQueries";
 import { useRouter } from "next/router";
 import { useQuery } from "urql";
-import { Player } from "../models/Player";
-import { Head } from "next/document";
+import { Player } from "../../models/Player";
+
 
 interface Props {
   tokenId: string | undefined | string[];
+  address: string | undefined | string[];
 }
 
-const AssignStats = ({ tokenId }: Props) => {
+const AssignStats = ({ tokenId, address  }: Props) => {
   const [tokenID, setTokenID] = useState<string>(tokenId as string);
-  const [query, setQuery] = useState<string>(getPlayerStats(tokenID) || "");
+  const [contractAddress, setContractAddress] = useState<string>(address as string);
+  const [query, setQuery] = useState<string>(getPlayerStats(tokenID, contractAddress) || "");
   const [player, setPlayer] = useState<Player | null>(null);
-
+  console.log("tokenID", tokenId)
+  console.log("address", address)
   const router = useRouter();
   const playerId = router.query.tokenId;
+  const playerAddress = router.query.address;
 
   useEffect(() => {
     setTokenID(playerId as string);
-    setQuery(getPlayerStats(tokenID));
+    setContractAddress(playerAddress as string);
+    setQuery(getPlayerStats(tokenID, contractAddress));
   }, [playerId, tokenID]);
 
   const [result, reexecuteQuery] = useQuery({
@@ -64,10 +69,12 @@ const AssignStats = ({ tokenId }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { tokenId } = context.query;
+  const { address } = context.query;
 
   return {
     props: {
       tokenId,
+      address,
     },
   };
 };

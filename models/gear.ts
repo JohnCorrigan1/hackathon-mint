@@ -1,6 +1,8 @@
 interface Gear {
     name: string;
     modifiers: Modifier[];
+    rarity: string;
+    slot: string;
 }
 
 interface Modifier {
