@@ -8,7 +8,7 @@ const GearMintModal: React.FC<{
   isSuccesful: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setIsSuccesfull: Dispatch<SetStateAction<boolean>>;
-  hash: string | undefined;
+//   hash: any;
 }> = (props) => {
 //   const [tokenID, setTokenId] = useState(1);
 
@@ -16,23 +16,23 @@ const GearMintModal: React.FC<{
     props.setIsOpen(false);
   };
 
-  useEffect(() => {
-    if (props.isSuccesful && props.hash) {
-      const provider = new ethers.providers.JsonRpcProvider(
-        `https://goerli.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`
-      );
+//   useEffect(() => {
+//     if (props.isSuccesful && props.hash) {
+//       const provider = new ethers.providers.JsonRpcProvider(
+//         `https://goerli.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`
+//       );
 
-const transactionHash = props.hash; // replace with the transaction hash you want to get information about
+// const transactionHash = props.hash; // replace with the transaction hash you want to get information about
 
-provider.getTransaction(transactionHash)
-  .then((transaction) => {
-    console.log(transaction); // replace with your own logic
-  })
-  .catch((error) => {
-    console.error(error); // replace with your own error handling
-  });
-    }
-  }, [props.isSuccesful]);
+// provider.getTransaction(transactionHash)
+//   .then((transaction) => {
+//     console.log(transaction); // replace with your own logic
+//   })
+//   .catch((error) => {
+//     console.error(error); // replace with your own error handling
+//   });
+//     }
+//   }, [props.isSuccesful]);
 
   const successHandler = () => {
     props.setIsSuccesfull(true);
@@ -93,7 +93,7 @@ provider.getTransaction(transactionHash)
                 Check it out here
               </p>
             </Link>
-            <Link href={`https://goerli.etherscan.io/tx/${props.hash}`}><p className="text-blue-600 cursor-pointer text-xl">View on etherscan</p></Link>
+            <Link href={`https://goerli.etherscan.io/`}><p className="text-blue-600 cursor-pointer text-xl">View on etherscan</p></Link>
           </div>
         )}
       </div>

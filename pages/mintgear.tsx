@@ -62,8 +62,8 @@ const Mintgear: NextPage = () => {
         />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" />
       </Head>
-        <GearMintModal isOpen={isOpen} setIsOpen={setIsOpen} isSuccesful={isSuccesful} mintHash={mintHash} />
-        <div className='h-[100vh] bg-[#2D2424]'>
+      <div>
+        <GearMintModal isOpen={isOpen} setIsOpen={setIsOpen} isSuccesful={isSuccesful} setIsSuccesfull={setIsSuccesfull} />
             <Nav />
             <div className='w-full flex flex-col justify-center items-center'>
             <div className='bg-[#D5CEA3] flex justify-center items-center w-2/5 bg-opacity-40 mt-20 p-20 gap-20 rounded-xl'>
