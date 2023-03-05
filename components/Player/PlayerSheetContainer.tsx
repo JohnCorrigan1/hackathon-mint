@@ -30,7 +30,7 @@ const PlayerSheetConainer = () => {
   {classes?.map((playerClass, index) => {
     return (
       <div className="carousel-item" key={index}>
-        <PlayerSheetCardMint title={playerClass.name} image="/wizard.png" defaultItems={["hat"]} description="lorem ipsum" description2="dkljfjlskdfjlsj" classContract={playerClass.id} />
+        <PlayerSheetCardMint title={playerClass.name} image="/wizard.png" description="Wizards specialize in arcane magic. They use a spellbook to prepare and cast spells and are known for their intelligence and versatility." description2="dkljfjlskdfjlsj" classContract={playerClass.id} />
         </div>
     )
   })}

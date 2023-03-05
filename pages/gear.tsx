@@ -8,8 +8,8 @@ import Gear from "../models/gear"
 
 const gear: NextPage = () => {
 
-    // const [isOpen, setIsOpen] = useState(false)
-    // const [isSuccesfull, setIsSuccesfull] = useState(false)
+
+
 
     const speedBoots: Gear = {
         name: "Speed Boots",

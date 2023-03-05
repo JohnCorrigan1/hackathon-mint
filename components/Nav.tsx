@@ -5,8 +5,8 @@ const Nav = () => {
   return (
     <div className="p-5 flex justify-between items-center">
       <Link href="/">
-        <h1 className="p-2 cursor-pointer rounded-lg hover:scale-105 active:scale-95 duration-200 font-bold text-2xl hover:bg-[#E0C097] hover:bg-opacity-30">
-          Cool Name
+        <h1 className=" text-zinc-200 p-2 cursor-pointer rounded-lg hover:scale-105 active:scale-95 duration-200 font-bold text-2xl hover:bg-[#E0C097] hover:bg-opacity-30">
+          Block Crawler
         </h1>
       </Link>
       <div className="flex gap-10 items-center">

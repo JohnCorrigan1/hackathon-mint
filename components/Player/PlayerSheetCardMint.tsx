@@ -1,66 +1,63 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import MintModal from "../MintModal";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
 } from "wagmi";
-import {
-  GOERLI_BARBARIAN_ADDRESS,
-  GOERLI_WIZARD_ADDRESS,
-} from "../../lib/constants";
-import { BARBARIAN_ABI, WIZARD_ABI } from "../../lib/abi";
+import { BARBARIAN_ABI} from "../../lib/abi";
 
 const PlayerSheetCard: React.FC<{
   title: string;
   image: string;
-  defaultItems: string[];
   description: string;
   description2: string;
   classContract: string;
 }> = (props) => {
   const ContractAddress = props.classContract;
 
-  const ContractABI = BARBARIAN_ABI;
+    const ContractABI = BARBARIAN_ABI;
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSuccesful, setIsSuccesfull] = useState(false);
-  const [info, setInfo] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isSuccesful, setIsSuccesfull] = useState(false);
+    const [info, setInfo] = useState(false);
+    const [mintHash, setMintHash] = useState("");
 
-  const mintHandler = () => {
-    mint?.();
-    setIsOpen(true);
-  };
+    const mintHandler = () => {
+      mint?.();
+      setIsOpen(true);
+    };
 
-  const { config } = usePrepareContractWrite({
-    // @ts-ignore
-    address: ContractAddress,
-    abi: ContractABI,
-    functionName: "mint",
-    args: [],
-    onError(error) {
-      console.log("Error", error);
-    },
-  });
+    const { config } = usePrepareContractWrite({
+      // @ts-ignore
+      address: ContractAddress,
+      abi: ContractABI,
+      functionName: "mint",
+      args: [],
+      onError(error) {
+        console.log("Error", error);
+      },
+    });
 
-  const {
-    write: mint,
-    isSuccess: isMintStarted,
-    data: mintData,
-  } = useContractWrite(config);
+    const {
+      write: mint,
+      isSuccess: isMintStarted,
+      data: mintData,
+    } = useContractWrite(config);
 
-  const { isSuccess: txSuccess } = useWaitForTransaction({
-    hash: mintData?.hash,
-  });
+    const { isSuccess: txSuccess } = useWaitForTransaction({
+      hash: mintData?.hash,
+    });
 
-  useEffect(() => {
-    if (txSuccess) {
-      setIsSuccesfull(true);
-    }
-    console.log(mintData);
-  }, [txSuccess]);
+    useEffect(() => {
+      if (txSuccess) {
+        setIsSuccesfull(true);
+        setMintHash(mintData!.hash.toString());
+      }
+      console.log(mintData);
+    }, [txSuccess]);
 
   return (
     <>
@@ -69,6 +66,7 @@ const PlayerSheetCard: React.FC<{
         isSuccesful={isSuccesful}
         setIsSuccesfull={setIsSuccesfull}
         setIsOpen={setIsOpen}
+        hash={mintHash}
       />
       <div className="flex flex-col bg-[#D5CEA3] bg-opacity-40 rounded-xl w-[400px]">
         <Image
@@ -93,7 +91,6 @@ const PlayerSheetCard: React.FC<{
           </div>
           {info && (
             <div className="absolute -top-5 left-14 bg-zinc-800 rounded-xl p-5 z-[100]">
-              <p>{props.description}</p>
               <p>{props.description2}</p>
             </div>
           )}
@@ -102,7 +99,7 @@ const PlayerSheetCard: React.FC<{
             {props.title}
           </h1>
           <p>{props.description}</p>
-          <p>{props.description2}</p>
+          {/* <p>{props.description2}</p> */}
           <button
             onClick={mintHandler}
             className="bg-[#E5E5CB] text-[#3C2A21] font-bold rounded-xl p-2 active:scale-95 hover:scale-105 duration-200"

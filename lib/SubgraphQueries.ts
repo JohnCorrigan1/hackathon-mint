@@ -83,4 +83,10 @@ const getItems = `
     query {
         `
 
+      
+//gets all owned items of currently connected wallet
+const getOwnedItems = (address: string) => `
+    query {
+      `
+
 export { getPlayers, getPlayerStats, getClasses, getItems }

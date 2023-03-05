@@ -16,7 +16,7 @@ const players: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-[100vh] bg-[#2D2424]">
+      <div className="min-h-[100vh] bg-[#2D2424]">
         <Nav />
         <div className="p-20">
           <PlayersList />

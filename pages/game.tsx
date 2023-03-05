@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { query } from '../lib/subgraphFetch'
 
@@ -11,15 +12,7 @@ const game1: NextPage = () => {
         , {
         ssr: false,
     })
-
-//    beforeUnmount(() => {
-//         // Remove the canvas element from the DOM
-//         const canvas = document.querySelector('canvas');
-//         if (canvas) {
-//           canvas.remove();
-//         }
-    // }
-
+  
     const [result, setResult] = useState<any>(null)
     
     useEffect(() => {
