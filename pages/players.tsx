@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import Nav from "../components/Nav";
+import Head from "next/head";
 import PlayersList from "../components/PlayersList";
 import { createClient } from "urql";
 import { useEffect, useState } from "react";
