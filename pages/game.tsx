@@ -34,4 +34,4 @@ const Game1: NextPage = () => {
 // todo update this to support custom queries
 
 
-export default game1
+export default Game1
