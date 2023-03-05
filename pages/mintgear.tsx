@@ -1,17 +1,56 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import Description from '../components/LootBoxes/Description'
 import LootBox from '../components/LootBoxes/LootBox'
 import Nav from '../components/Nav'
+import { gearAbi } from '../lib/abi'
+import GearMintModal from '../components/GearMintModal'
 
 const Mintgear: NextPage = () => {
 
     const [isAnimating, setIsAnimating] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [isSuccesful, setIsSuccesfull] = useState(false)
+    const [mintHash, setMintHash] = useState("");
 
     const handleGearMint = () => {
         setIsAnimating(true)
+        mint?.();
+        setIsOpen(true);
     }
+
+    const gearContractAddress = "0x5f5c328732c9e52dab3d1449b3e2abfbd49e4a50"
+
+    const { config } = usePrepareContractWrite({
+      // @ts-ignore
+      address: gearContractAddress,
+      abi: gearAbi,
+      functionName: "mint",
+      args: [],
+      onError(error) {
+        console.log("Error", error);
+      },
+    });
+
+    const {
+      write: mint,
+      isSuccess: isMintStarted,
+      data: mintData,
+    } = useContractWrite(config);
+
+    const { isSuccess: txSuccess } = useWaitForTransaction({
+      hash: mintData?.hash,
+    });
+
+    useEffect(() => {
+      if (txSuccess) {
+        setIsSuccesfull(true);
+        setMintHash(mintData!.hash.toString());
+      }
+      console.log(mintData);
+    }, [txSuccess]);
 
     return (
         <>
@@ -23,7 +62,7 @@ const Mintgear: NextPage = () => {
         />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" />
       </Head>
-        
+        <GearMintModal isOpen={isOpen} setIsOpen={setIsOpen} isSuccesful={isSuccesful} mintHash={mintHash} />
         <div className='h-[100vh] bg-[#2D2424]'>
             <Nav />
             <div className='w-full flex flex-col justify-center items-center'>

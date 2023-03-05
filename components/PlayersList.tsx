@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getPlayers } from "../lib/SubgraphQueries";
 import { useQuery } from "urql";
 import { useAccount } from "wagmi";
-// import { Player } from "../models/player";
 import { Player } from "../models/Player";
 import Link from "next/link";
 
@@ -67,7 +66,7 @@ const PlayersList: React.FC = () => {
             <p></p>
             {players?.map((player, index) => {
                 return (
-                    <PlayerListItem key={index} name={player.tokenId} class={player.playerClass.name} level={player.level.toString()} tokenId={player.tokenId} address={player.id} />
+                    <PlayerListItem key={index} name={player.tokenId} class={player.playerClass.name} tokenId={player.tokenId} address={player.id} />
                 )
             })}
         </div> )}

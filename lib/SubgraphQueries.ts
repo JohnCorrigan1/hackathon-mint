@@ -1,14 +1,12 @@
 //gets owned players of currently connected wallet tokenIds
 const getPlayers = (address: string) =>  `
   query {
-    user(id: "${address}") {
-        players {
+        players(where: {owner_contains_nocase: "${address}"}) {
           id
           intelligence
           charisma
           constitution
           dexterity
-          level
           luck
           pointsToSpend
           playerClass {
@@ -17,9 +15,7 @@ const getPlayers = (address: string) =>  `
           tokenId
           strength
           wisdom
-          xp
         }
-      }
   } 
   `
 
@@ -131,9 +127,9 @@ const getItems = `
 
       
 //gets all owned items of currently connected wallet
-const getOwnedItems = (address: string) => `
+const getOwnedGear = (address: string) => `
     query {
 
       `
 
-export { getPlayers, getPlayerStats, getClasses, getItems }
+export { getPlayers, getPlayerStats, getClasses, getItems, getOwnedGear }

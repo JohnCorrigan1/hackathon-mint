@@ -3,8 +3,6 @@ import { PlayerClass } from './playerClass';
 export interface Player {
     id: string;
     tokenId: string;
-    level: number;
-    xp: string;
     strength: number;
     dexterity: number;
     constitution: number;

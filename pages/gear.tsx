@@ -1,11 +1,14 @@
 import { NextPage } from "next"
 import Head from "next/head"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { isPromise } from "util/types"
 import EquipModal from "../components/EquipModal"
 import GearCard from "../components/GearCard"
 import Nav from "../components/Nav"
 import Gear from "../models/gear"
+import { useQuery } from "urql";
+import { useAccount } from "wagmi";
+import { getOwnedGear } from "../lib/SubgraphQueries";
 
 const Gear: NextPage = () => {
 
@@ -15,6 +18,45 @@ const Gear: NextPage = () => {
         rarity: "common",
         slot: "feet",
     }
+
+    const { isConnected } = useAccount();
+    const [user, setUser] = useState<`0x${string}`>(`0x${""}`);
+    const [query, setQuery] = useState<string>(getOwnedGear(user) || "");
+    const [gear, setGear] = useState<Gear[]>([])
+    const [noPlayers, setNoPlayers] = useState(false)
+    const [result, reexecuteQuery] = useQuery({
+        query,
+      });
+
+    useEffect(() => {
+    getAccount()
+    }, [isConnected])
+3
+    useEffect(() => {
+        // console.log("user", user)
+        setQuery(getOwnedGear(user))
+        reexecuteQuery()
+    }, [user])
+
+    // const { account } = useAccount();
+    const getAccount = async () => {
+    if(isConnected) {
+    const account = await window.ethereum?.request({ method: 'eth_accounts' })
+    setUser(account![0])
+    // console.log("user here", user)
+    }
+    }
+  
+    useEffect(() => {
+      const { data, fetching, error } = result;
+      if(result.data?.user){
+        setNoPlayers(false)
+      setGear(result.data?.user.gear)
+      }
+      else {
+        setNoPlayers(true)
+      }
+    }, [result])
 
     return (
         <>
@@ -32,6 +74,27 @@ const Gear: NextPage = () => {
             {/* <EquipModal isOpen={isOpen} setIsOpen={setIsOpen}/> */}
             <div className="grid grid-cols-5 p-10 gap-5">
                 {/* <GearCard item={speedBoots} isOpen={isOpen} isSuccessfull={isSuccesfull} setIsOpen={setIsOpen} setIsSuccesfull={setIsSuccesfull}/> */}
+               {gear.map((item, index) => {
+                    let image = ""
+                    if(item.slot === "1") {
+                        image = "/head.png"
+                    }
+                    else if(item.slot === "2") {
+                        image = "/chest.png"
+                    }
+                    else if(item.slot === "3") {
+                        image = "/legs.png"
+                    }
+                    else if(item.slot === "4") {
+                        image = "/feet.png"
+                    }
+
+                     return <GearCard image={image} item={item} key={index} />
+                })
+               }
+               
+                <GearCard item={speedBoots} image="/head.png"/>
+                {/* <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
@@ -39,9 +102,7 @@ const Gear: NextPage = () => {
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
                 <GearCard item={speedBoots} />
-                <GearCard item={speedBoots} />
-                <GearCard item={speedBoots} />
-                <GearCard item={speedBoots} />
+                <GearCard item={speedBoots} /> */}
             </div>
         </div>
         </>
