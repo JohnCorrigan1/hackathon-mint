@@ -60,14 +60,14 @@ const PlayersList: React.FC = () => {
         
         ) : (
         <div className="grid p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
-            <p className="flex justify-center text-2xl">Name</p>
+            <p className="flex justify-center text-2xl">TokenId</p>
             <p className="flex justify-center text-2xl">Class</p>
             <p className="flex justify-center text-2xl">Level</p>
             <p></p>
             <p></p>
             {players?.map((player, index) => {
                 return (
-                    <PlayerListItem key={index} name={"Player"} class={player.playerClass.name} level={player.level.toString()} tokenId={player.tokenId} />
+                    <PlayerListItem key={index} name={player.tokenId} class={player.playerClass.name} level={player.level.toString()} tokenId={player.tokenId} />
                 )
             })}
         </div> )}

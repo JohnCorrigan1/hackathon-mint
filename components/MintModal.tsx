@@ -86,18 +86,14 @@ provider.getTransaction(transactionHash)
         )}
 
         {props.isSuccesful && (
-          <div>
-            <p className="text-2xl font-bold">Successfully minted #123!</p>
-            <p>
-              You&apos;re player sheet has 12 stat points available to assign
-            </p>
+          <div className="flex justify-center flex-col items-center">
+            <p className="text-2xl font-bold mb-5">Successfully minted!</p>
             <Link href="/players">
-              <p className="underline text-blue-500 cursor-pointer">
-                Assign them here
+              <p className="text-blue-600 cursor-pointer text-xl">
+                Assign stat points here
               </p>
             </Link>
-            <p>Transaction hash: {props.hash}</p>
-            <Link href={`https://goerli.etherscan.io/tx/${props.hash}`}><p>View on EtherScan</p></Link>
+            <Link href={`https://goerli.etherscan.io/tx/${props.hash}`}><p className="text-blue-600 cursor-pointer text-xl">View on etherscan</p></Link>
           </div>
         )}
       </div>

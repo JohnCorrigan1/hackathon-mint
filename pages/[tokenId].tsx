@@ -7,6 +7,7 @@ import { getPlayerStats } from "../lib/SubgraphQueries";
 import { useRouter } from "next/router";
 import { useQuery } from "urql";
 import { Player } from "../models/Player";
+import { Head } from "next/document";
 
 interface Props {
   tokenId: string | undefined | string[];
@@ -43,7 +44,7 @@ const AssignStats = ({ tokenId }: Props) => {
     <div className="h-[100vh] w-[100vw] bg-[#2D2424]">
       <Nav />
       <div className="flex justify-center">
-        <div className="flex w-1/2 rounded-xl bg-[#D5CEA3] bg-opacity-30">
+        <div className="flex w-1/4 rounded-xl bg-[#D5CEA3] bg-opacity-30">
           {player && (
             <>
               <PlayerSheetCardOwned
@@ -52,7 +53,7 @@ const AssignStats = ({ tokenId }: Props) => {
                 player={player}
                 image={"/wizard.png"}
               />
-              <PlayerSheetItems player={player} />
+              {/* <PlayerSheetItems player={player} /> */}
             </>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { NextPage } from "next"
+import { Head } from "next/document"
 import { useState } from "react"
 import { isPromise } from "util/types"
 import EquipModal from "../components/EquipModal"
@@ -6,8 +7,7 @@ import GearCard from "../components/GearCard"
 import Nav from "../components/Nav"
 import Gear from "../models/gear"
 
-const gear: NextPage = () => {
-
+const Gear: NextPage = () => {
 
 
 
@@ -39,4 +39,4 @@ const gear: NextPage = () => {
     )
 }
 
-export default gear
+export default Gear

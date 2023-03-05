@@ -19,14 +19,12 @@ const PlayerSheetCardOwned: React.FC<{
   const [availablePoints, setAvailablePoints] = useState(
     props.player?.pointsToSpend
   );
-  const [name, setName] = useState("");
+//  const [className, setClassName] = useState(props.player?.playerClass.name);
 
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
+    
 
   return (
-    <div className="flex flex-col  w-1/2 border-r-2 border-black p-5">
+    <div className="flex flex-col w-full p-5">
       <Image
         src={props.image}
         alt={props.title}
@@ -37,10 +35,8 @@ const PlayerSheetCardOwned: React.FC<{
       <div className="p-5 text-zinc-200 flex flex-col gap-5">
         <div className="border-2 border-black rounded-xl flex flex-col">
           <div className="flex justify-center border-b-2 border-black p-3 flex-col items-center">
-            <label className="" htmlFor="name">
-              Name
-            </label>
-            <input type="text" name="name" onChange={handleName} value={name} />
+            
+            {/* <h1 className="text-2xl">{className}</h1> */}
           </div>
           <div className="flex justify-center border-b-2 border-black p-3">
             <h2>Level: {props.player?.level}</h2>
