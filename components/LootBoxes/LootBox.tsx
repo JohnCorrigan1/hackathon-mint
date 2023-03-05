@@ -10,3 +10,4 @@ const LootBox: React.FC<{isAnimating: boolean, setIsAnimating: Dispatch<SetState
 }
 
 export default LootBox
+    

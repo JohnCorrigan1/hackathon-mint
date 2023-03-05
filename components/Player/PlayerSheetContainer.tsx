@@ -13,7 +13,6 @@ const PlayerSheetConainer = () => {
     query: getClasses,
   });
 
-
   useEffect(() => {
     reexecuteQuery()
   }, [classes])
@@ -24,7 +23,6 @@ const PlayerSheetConainer = () => {
     console.log(classes)
   }, [result])
   
-
   return (
     <div className="flex items-center ">
         <div className="carousel carousel-center rounded-box gap-5 p-5">
@@ -32,7 +30,7 @@ const PlayerSheetConainer = () => {
   {classes?.map((playerClass, index) => {
     return (
       <div className="carousel-item" key={index}>
-        <PlayerSheetCardMint title={playerClass.name} image="/wizard.png" defaultItems={["hat"]} description="lorem ipsum" description2="dkljfjlskdfjlsj" />
+        <PlayerSheetCardMint title={playerClass.name} image="/wizard.png" defaultItems={["hat"]} description="lorem ipsum" description2="dkljfjlskdfjlsj" classContract={playerClass.id} />
         </div>
     )
   })}
