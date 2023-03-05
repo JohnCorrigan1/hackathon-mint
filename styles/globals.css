@@ -71,4 +71,65 @@ canvas {
       box-shadow: inset 0px 0px 0px 80px #7ac142;
     }
   }
+
+  .crate{
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: rotateAndMove 4s both;
+  }
+  
+  @keyframes rotateAndMove {
+    0% {
+      transform: rotate(0deg);
+      top: 0;
+    }
+    25% {
+      transform: rotate(180deg);
+      top: -20px;
+    }
+    50% {
+      transform: rotate(180deg);
+      top: 150px;
+    }
+
+    100% {
+      transform: rotate(180deg);
+      top: 0;
+    }
+
+  }
+
+/* 
+  .crate {
+    animation: turn 3s ease-in-out;
+    transition: 1.5s;
+    transform: rotate(180deg);
+    animation: upDown 3s ease-in-out;
+  }
+
+  @keyframes upDown {
+    25% {
+      transform: rotate(90deg)
+    }
+
+    50% {
+      transform: rotate(180deg)
+    }
+
+    75% {
+      transform: translateY(-100px);
+      transform: rotate(180deg);
+    }
+
+    100% {
+      transform: translateY(100px), rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+  } 
+   */
+
+
+
   
