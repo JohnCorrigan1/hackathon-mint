@@ -58,7 +58,7 @@ const PlayersList: React.FC = () => {
         </div>
         
         ) : (
-        <div className="grid grid-cols-4 p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
+        <div className="grid p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
             <p className="flex justify-center text-2xl">TokenId</p>
             <p className="flex justify-center text-2xl">Class</p>
             <p></p>
