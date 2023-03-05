@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { query } from '../lib/subgraphFetch'
 
-const game1: NextPage = () => {
+const Game1: NextPage = () => {
     const PhaserGame = dynamic(() => {
         import('../components/Phaser/PhaserGame')
         return import('../components/Blank')

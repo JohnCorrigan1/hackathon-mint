@@ -4,7 +4,7 @@ import Description from '../components/LootBoxes/Description'
 import LootBox from '../components/LootBoxes/LootBox'
 import Nav from '../components/Nav'
 
-const mintgear: NextPage = () => {
+const Mintgear: NextPage = () => {
 
     const [isAnimating, setIsAnimating] = useState(false)
 
@@ -27,4 +27,4 @@ const mintgear: NextPage = () => {
     )
 }
 
-export default mintgear
+export default Mintgear
