@@ -65,43 +65,17 @@ const getPlayers = (address: string) =>  `
 
 const getPlayerStats = (tokenId: string, address: string) =>`
     query {
-      players(where: {tokenId: "${tokenId}", id: "${address}"}) {
+      players(where: {id: "${address}"}) {
         charisma
         constitution
         dexterity
         id
         intelligence
-        level
         luck
         pointsToSpend
         tokenId
         strength
         wisdom
-        xp
-        feet {
-          id
-          name
-          rarity
-          slot
-        }
-        head {
-          id
-          name
-          rarity
-          slot
-        }
-        legs {
-          id
-          name
-          rarity
-          slot
-        }
-        body {
-          id
-          name
-          rarity
-          slot
-        }
         playerClass {
           id
           name
