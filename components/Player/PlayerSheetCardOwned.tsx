@@ -49,9 +49,7 @@ const PlayerSheetCardOwned: React.FC<{
             
             <h1 className="text-2xl">{props.player?.playerClass.name}</h1>
           </div>
-          <div className="flex justify-center border-b-2 border-black p-3">
-            <h2>Level: {props.player?.level}</h2>
-          </div>
+     
           <PlayerSheetStat
             availablePoints={availablePoints}
             setAvailablePoints={setAvailablePoints}
