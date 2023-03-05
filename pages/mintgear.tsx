@@ -21,7 +21,7 @@ const Mintgear: NextPage = () => {
         setIsOpen(true);
     }
 
-    const gearContractAddress = "0x5f5c328732c9e52dab3d1449b3e2abfbd49e4a50"
+    const gearContractAddress = "0xd6aedd59e179f53d2a270f7438f1e2edacde12cd"
 
     const { config } = usePrepareContractWrite({
       // @ts-ignore
