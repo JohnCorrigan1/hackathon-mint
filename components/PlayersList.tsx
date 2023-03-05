@@ -18,7 +18,7 @@ const PlayersList: React.FC = () => {
       });
 
     useEffect(() => {
-    getAccount()
+      getAccount()
     }, [isConnected])
 3
     useEffect(() => {
@@ -38,9 +38,9 @@ const PlayersList: React.FC = () => {
   
     useEffect(() => {
       const { data, fetching, error } = result;
-      if(result.data?.user){
+      if(result.data?.players.length > 0){
         setNoPlayers(false)
-      setPlayers(result.data?.user.players)
+        setPlayers(result.data?.players)
       }
       else {
         setNoPlayers(true)
@@ -58,10 +58,9 @@ const PlayersList: React.FC = () => {
         </div>
         
         ) : (
-        <div className="grid p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
+        <div className="grid grid-cols-4 p-10 bg-[#D5CEA3] bg-opacity-40 table gap-10 rounded-lg text-zinc-200 font-bold shadow-xl">
             <p className="flex justify-center text-2xl">TokenId</p>
             <p className="flex justify-center text-2xl">Class</p>
-            <p className="flex justify-center text-2xl">Level</p>
             <p></p>
             <p></p>
             {players?.map((player, index) => {
